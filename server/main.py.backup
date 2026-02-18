@@ -1,0 +1,734 @@
+"""
+OpenClaw Watch Server - 主服务
+"""
+import os
+import json
+import time
+from datetime import datetime, timedelta
+from contextlib import asynccontextmanager
+from typing import Optional, List, Dict, Any
+
+from fastapi import FastAPI, HTTPException, Request, Depends, BackgroundTasks
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import HTMLResponse, JSONResponse
+from pydantic import BaseModel
+from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, Text, Boolean
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.orm import sessionmaker, Session
+from sqlalchemy.future import select
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+
+# ==================== 配置 ====================
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite+aiosqlite:////app/data/openclaw_watch.db")
+API_KEY_SECRET = os.getenv("API_KEY_SECRET", "change-me-in-production")
+SERVER_PORT = int(os.getenv("SERVER_PORT", "8080"))
+REPORT_PORT = int(os.getenv("REPORT_PORT", "9000"))
+
+# ==================== 数据库模型 ====================
+Base = declarative_base()
+
+class Device(Base):
+    __tablename__ = "devices"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(100), nullable=False)
+    device_type = Column(String(50), default="unknown")
+    api_key = Column(String(100), unique=True, index=True, nullable=False)
+    public_ip = Column(String(50))
+    is_online = Column(Boolean, default=False)
+    last_seen = Column(DateTime, nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    notes = Column(Text, nullable=True)
+
+class DeviceStatus(Base):
+    __tablename__ = "device_status"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    device_id = Column(Integer, index=True)
+    timestamp = Column(DateTime, default=datetime.utcnow)
+    
+    # OpenClaw 状态
+    openclaw_version = Column(String(50))
+    openclaw_status = Column(String(20))
+    runtime = Column(String(50))
+    model = Column(String(100))
+    thinking = Column(String(20))
+    
+    # 系统资源
+    cpu_percent = Column(Float)
+    memory_percent = Column(Float)
+    disk_percent = Column(Float)
+    
+    # Token 使用
+    context_tokens = Column(Integer)
+    total_tokens = Column(Integer)
+
+class ErrorLog(Base):
+    __tablename__ = "error_logs"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    device_id = Column(Integer, index=True)
+    timestamp = Column(DateTime, default=datetime.utcnow)
+    level = Column(String(20))
+    message = Column(Text)
+    source = Column(String(200))
+    stack_trace = Column(Text)
+
+# ==================== Pydantic 模型 ====================
+class DeviceCreate(BaseModel):
+    name: str
+    device_type: str = "unknown"
+    api_key: Optional[str] = None
+    public_ip: Optional[str] = None
+    notes: Optional[str] = None
+
+class DeviceUpdate(BaseModel):
+    name: Optional[str] = None
+    device_type: Optional[str] = None
+    public_ip: Optional[str] = None
+    notes: Optional[str] = None
+
+class DeviceResponse(BaseModel):
+    id: int
+    name: str
+    device_type: str
+    api_key: str
+    public_ip: Optional[str]
+    is_online: bool
+    last_seen: Optional[datetime]
+    created_at: datetime
+    notes: Optional[str]
+    
+    class Config:
+        from_attributes = True
+
+class StatusReport(BaseModel):
+    api_key: str
+    openclaw_version: Optional[str] = None
+    openclaw_status: Optional[str] = None
+    runtime: Optional[str] = None
+    model: Optional[str] = None
+    thinking: Optional[str] = None
+    cpu_percent: Optional[float] = None
+    memory_percent: Optional[float] = None
+    disk_percent: Optional[float] = None
+    context_tokens: Optional[int] = None
+    total_tokens: Optional[int] = None
+
+class ErrorReport(BaseModel):
+    api_key: str
+    level: str = "error"
+    message: str
+    source: Optional[str] = None
+    stack_trace: Optional[str] = None
+
+# ==================== 数据库初始化 ====================
+engine = create_async_engine(DATABASE_URL, echo=False)
+
+async def init_db():
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
+async def get_db():
+    async with AsyncSession(engine) as session:
+        yield session
+
+# ==================== 应用生命周期 ====================
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await init_db()
+    scheduler = AsyncIOScheduler()
+    scheduler.add_job(check_device_online, "interval", minutes=1)
+    scheduler.start()
+    yield
+
+app = FastAPI(title="OpenClaw Watch", lifespan=lifespan)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# ==================== 辅助函数 ====================
+async def check_device_online():
+    """检查设备在线状态"""
+    async with AsyncSession(engine) as session:
+        result = await session.execute(select(Device))
+        devices = result.scalars().all()
+        now = datetime.utcnow()
+        
+        for device in devices:
+            if device.last_seen:
+                # 超过5分钟视为离线
+                if (now - device.last_seen).total_seconds() > 300:
+                    device.is_online = False
+        
+        await session.commit()
+
+def verify_api_key(api_key: str, db: Session) -> Device:
+    """验证 API Key"""
+    result = db.execute(select(Device).where(Device.api_key == api_key))
+    device = result.scalar_one_or_none()
+    if not device:
+        raise HTTPException(status_code=401, detail="Invalid API Key")
+    return device
+
+# ==================== API 路由 ====================
+
+# --- 设备管理 ---
+@app.post("/api/devices", response_model=DeviceResponse)
+async def create_device(device: DeviceCreate, db: AsyncSession = Depends(get_db)):
+    """创建设备"""
+    import secrets
+    api_key = device.api_key or secrets.token_hex(32)
+    
+    db_device = Device(
+        name=device.name,
+        device_type=device.device_type,
+        api_key=api_key,
+        public_ip=device.public_ip,
+        notes=device.notes
+    )
+    db.add(db_device)
+    await db.commit()
+    await db.refresh(db_device)
+    return db_device
+
+@app.get("/api/devices", response_model=List[DeviceResponse])
+async def list_devices(db: AsyncSession = Depends(get_db)):
+    """获取设备列表"""
+    result = await db.execute(select(Device))
+    return result.scalars().all()
+
+@app.get("/api/devices/{device_id}", response_model=DeviceResponse)
+async def get_device(device_id: int, db: AsyncSession = Depends(get_db)):
+    """获取设备详情"""
+    result = await db.execute(select(Device).where(Device.id == device_id))
+    device = result.scalar_one_or_none()
+    if not device:
+        raise HTTPException(status_code=404, detail="Device not found")
+    return device
+
+@app.put("/api/devices/{device_id}", response_model=DeviceResponse)
+async def update_device(device_id: int, device: DeviceUpdate, db: AsyncSession = Depends(get_db)):
+    """更新设备"""
+    result = await db.execute(select(Device).where(Device.id == device_id))
+    db_device = result.scalar_one_or_none()
+    if not db_device:
+        raise HTTPException(status_code=404, detail="Device not found")
+    
+    if device.name is not None:
+        db_device.name = device.name
+    if device.device_type is not None:
+        db_device.device_type = device.device_type
+    if device.public_ip is not None:
+        db_device.public_ip = device.public_ip
+    if device.notes is not None:
+        db_device.notes = device.notes
+    
+    await db.commit()
+    await db.refresh(db_device)
+    return db_device
+
+@app.delete("/api/devices/{device_id}")
+async def delete_device(device_id: int, db: AsyncSession = Depends(get_db)):
+    """删除设备"""
+    result = await db.execute(select(Device).where(Device.id == device_id))
+    device = result.scalar_one_or_none()
+    if not device:
+        raise HTTPException(status_code=404, detail="Device not found")
+    
+    await db.delete(device)
+    await db.commit()
+    return {"message": "Device deleted"}
+
+# --- 状态上报 ---
+@app.post("/api/report/status")
+async def report_status(report: StatusReport, background_tasks: BackgroundTasks, db: AsyncSession = Depends(get_db)):
+    """设备状态上报"""
+    # 验证 API Key
+    result = await db.execute(select(Device).where(Device.api_key == report.api_key))
+    device = result.scalar_one_or_none()
+    if not device:
+        raise HTTPException(status_code=401, detail="Invalid API Key")
+    
+    # 更新设备在线状态
+    device.is_online = True
+    device.last_seen = datetime.utcnow()
+    
+    # 记录状态
+    status = DeviceStatus(
+        device_id=device.id,
+        openclaw_version=report.openclaw_version,
+        openclaw_status=report.openclaw_status,
+        runtime=report.runtime,
+        model=report.model,
+        thinking=report.thinking,
+        cpu_percent=report.cpu_percent,
+        memory_percent=report.memory_percent,
+        disk_percent=report.disk_percent,
+        context_tokens=report.context_tokens,
+        total_tokens=report.total_tokens
+    )
+    db.add(status)
+    await db.commit()
+    
+    return {"message": "Status received"}
+
+@app.post("/api/report/error")
+async def report_error(report: ErrorReport, db: AsyncSession = Depends(get_db)):
+    """错误日志上报"""
+    # 验证 API Key
+    result = await db.execute(select(Device).where(Device.api_key == report.api_key))
+    device = result.scalar_one_or_none()
+    if not device:
+        raise HTTPException(status_code=401, detail="Invalid API Key")
+    
+    # 记录错误
+    error = ErrorLog(
+        device_id=device.id,
+        level=report.level,
+        message=report.message,
+        source=report.source,
+        stack_trace=report.stack_trace
+    )
+    db.add(error)
+    await db.commit()
+    
+    return {"message": "Error logged"}
+
+# --- 监控数据查询 ---
+@app.get("/api/devices/{device_id}/status")
+async def get_device_status(device_id: int, hours: int = 1, db: AsyncSession = Depends(get_db)):
+    """获取设备状态历史"""
+    since = datetime.utcnow() - timedelta(hours=hours)
+    result = await db.execute(
+        select(DeviceStatus)
+        .where(DeviceStatus.device_id == device_id)
+        .where(DeviceStatus.timestamp >= since)
+        .order_by(DeviceStatus.timestamp.desc())
+    )
+    return result.scalars().all()
+
+@app.get("/api/devices/{device_id}/errors")
+async def get_device_errors(device_id: int, limit: int = 100, db: AsyncSession = Depends(get_db)):
+    """获取设备错误日志"""
+    result = await db.execute(
+        select(ErrorLog)
+        .where(ErrorLog.device_id == device_id)
+        .order_by(ErrorLog.timestamp.desc())
+        .limit(limit)
+    )
+    return result.scalars().all()
+
+@app.get("/api/errors")
+async def get_all_errors(
+    device_id: Optional[int] = None,
+    level: Optional[str] = None,
+    limit: int = 100,
+    db: AsyncSession = Depends(get_db)
+):
+    """获取所有错误日志"""
+    query = select(ErrorLog).order_by(ErrorLog.timestamp.desc()).limit(limit)
+    
+    if device_id:
+        query = query.where(ErrorLog.device_id == device_id)
+    if level:
+        query = query.where(ErrorLog.level == level)
+    
+    result = await db.execute(query)
+    return result.scalars().all()
+
+# --- 统计 API ---
+@app.get("/api/stats")
+async def get_stats(db: AsyncSession = Depends(get_db)):
+    """获取统计信息"""
+    # 设备数量
+    devices_result = await db.execute(select(Device))
+    devices = devices_result.scalars().all()
+    total_devices = len(devices)
+    online_devices = len([d for d in devices if d.is_online])
+    
+    # 今日 Token 消耗
+    today = datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0)
+    today_result = await db.execute(
+        select(DeviceStatus).where(DeviceStatus.timestamp >= today)
+    )
+    today_status = today_result.scalars().all()
+    today_tokens = sum(s.total_tokens or 0 for s in today_status)
+    
+    # 总 Token 消耗
+    all_result = await db.execute(select(DeviceStatus))
+    all_status = all_result.scalars().all()
+    total_tokens = sum(s.total_tokens or 0 for s in all_status)
+    
+    # 错误数量
+    errors_result = await db.execute(select(ErrorLog))
+    errors = errors_result.scalars().all()
+    total_errors = len(errors)
+    
+    return {
+        "total_devices": total_devices,
+        "online_devices": online_devices,
+        "offline_devices": total_devices - online_devices,
+        "today_tokens": today_tokens,
+        "total_tokens": total_tokens,
+        "total_errors": total_errors
+    }
+
+# ==================== 前端静态文件 ====================
+@app.get("/", response_class=HTMLResponse)
+async def index():
+    """主页面"""
+    return """
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw Watch - 监控面板</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; }
+        .header { background: #fff; padding: 16px 24px; border-bottom: 1px solid #e4e7ed; display: flex; justify-content: space-between; align-items: center; }
+        .header h1 { font-size: 20px; color: #303133; }
+        .header .time { color: #909399; font-size: 14px; }
+        
+        .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+        
+        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+        .stat-card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+        .stat-card .label { color: #909399; font-size: 14px; margin-bottom: 8px; }
+        .stat-card .value { font-size: 28px; font-weight: 600; color: #303133; }
+        .stat-card .value.online { color: #67c23a; }
+        .stat-card .value.offline { color: #f56c6c; }
+        
+        .section { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); margin-bottom: 24px; }
+        .section-header { padding: 16px 20px; border-bottom: 1px solid #e4e7ed; display: flex; justify-content: space-between; align-items: center; }
+        .section-header h2 { font-size: 16px; color: #303133; }
+        .section-header .actions { display: flex; gap: 8px; }
+        
+        .btn { padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
+        .btn-primary { background: #409eff; color: #fff; }
+        .btn-primary:hover { background: #66b1ff; }
+        .btn-success { background: #67c23a; color: #fff; }
+        .btn-danger { background: #f56c6c; color: #fff; }
+        
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #e4e7ed; }
+        th { background: #fafafa; color: #606266; font-weight: 500; font-size: 14px; }
+        td { color: #606266; font-size: 14px; }
+        tr:hover { background: #f5f7fa; }
+        
+        .status-badge { padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+        .status-online { background: #e1f3d8; color: #67c23a; }
+        .status-offline { background: #fde2e2; color: #f56c6c; }
+        
+        .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; }
+        .modal.show { display: flex; }
+        .modal-content { background: #fff; border-radius: 8px; width: 500px; max-width: 90%; }
+        .modal-header { padding: 16px 20px; border-bottom: 1px solid #e4e7ed; }
+        .modal-header h3 { font-size: 16px; }
+        .modal-body { padding: 20px; }
+        .modal-footer { padding: 16px 20px; border-top: 1px solid #e4e7ed; text-align: right; }
+        
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; margin-bottom: 8px; color: #606266; font-size: 14px; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 8px 12px; border: 1px solid #dcdfe6; border-radius: 4px; font-size: 14px; }
+        
+        .chart { height: 200px; padding: 16px; }
+        
+        @media (max-width: 768px) {
+            .stats { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🕵️ OpenClaw Watch</h1>
+        <div class="time" id="currentTime"></div>
+    </div>
+    
+    <div class="container">
+        <!-- 设备状态卡片 -->
+        <div class="stats">
+            <div class="stat-card">
+                <div class="label">设备总数</div>
+                <div class="value" id="totalDevices">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">在线设备</div>
+                <div class="value online" id="onlineDevices">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">离线设备</div>
+                <div class="value offline" id="offlineDevices">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">错误日志</div>
+                <div class="value" id="errorCount">-</div>
+            </div>
+        </div>
+        
+        <!-- Token 消耗卡片 -->
+        <div class="stats">
+            <div class="stat-card">
+                <div class="label">今日消耗 Token</div>
+                <div class="value" id="todayTokens">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">累计消耗 Token</div>
+                <div class="value" id="totalTokens">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">今日消耗 ($)</div>
+                <div class="value" id="todayCost">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">累计消耗 ($)</div>
+                <div class="value" id="totalCost">-</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">
+                <h2>📱 设备列表</h2>
+                <div class="actions">
+                    <button class="btn btn-primary" onclick="showAddModal()">+ 添加设备</button>
+                    <button class="btn btn-success" onclick="refreshData()">🔄 刷新</button>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>设备名称</th>
+                        <th>类型</th>
+                        <th>IP 地址</th>
+                        <th>OpenClaw 版本</th>
+                        <th>状态</th>
+                        <th>最后在线</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="deviceList"></tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">
+                <h2>⚠️ 最新错误日志</h2>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>设备</th>
+                        <th>级别</th>
+                        <th>消息</th>
+                        <th>来源</th>
+                    </tr>
+                </thead>
+                <tbody id="errorList"></tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- 添加设备弹窗 -->
+    <div class="modal" id="addModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>添加设备</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>设备名称</label>
+                    <input type="text" id="deviceName" placeholder="例如: Mac Mini">
+                </div>
+                <div class="form-group">
+                    <label>设备类型</label>
+                    <select id="deviceType">
+                        <option value="mac">Mac</option>
+                        <option value="linux">Linux 服务器</option>
+                        <option value="windows">Windows PC</option>
+                        <option value="vps">VPS</option>
+                        <option value="nas">NAS</option>
+                        <option value="other">其他</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>公网 IP (可选)</label>
+                    <input type="text" id="deviceIp" placeholder="例如: 123.45.67.89">
+                </div>
+                <div class="form-group">
+                    <label>备注</label>
+                    <textarea id="deviceNotes" rows="3" placeholder="可选备注"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" onclick="hideAddModal()">取消</button>
+                <button class="btn btn-primary" onclick="addDevice()">添加</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let devices = [];
+        
+        async function apiCall(url, options = {}) {
+            const response = await fetch(url, {
+                ...options,
+                headers: { 'Content-Type': 'application/json', ...options.headers }
+            });
+            return response.json();
+        }
+        
+        // 格式化 Token 数量
+        function formatTokens(num) {
+            if (!num || num === 0) return '0';
+            if (num >= 1000000) return (num / 1000000).toFixed(2) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+            return num.toString();
+        }
+        
+        // 估算成本 (假设 $1/1M tokens)
+        function formatCost(num) {
+            if (!num || num === 0) return '$0';
+            const cost = num / 1000000 * 1; // $1 per million tokens
+            return '$' + cost.toFixed(4);
+        }
+        
+        async function loadData() {
+            try {
+                devices = await apiCall('/api/devices');
+                const errors = await apiCall('/api/errors?limit=20');
+                const stats = await apiCall('/api/stats');
+                
+                updateStats(stats);
+                renderDeviceList();
+                renderErrorList(errors);
+            } catch (e) {
+                console.error('Load data error:', e);
+            }
+        }
+        
+        function updateStats(stats) {
+            const total = devices.length;
+            const online = devices.filter(d => d.is_online).length;
+            const offline = total - online;
+            
+            document.getElementById('totalDevices').textContent = total;
+            document.getElementById('onlineDevices').textContent = online;
+            document.getElementById('offlineDevices').textContent = offline;
+            document.getElementById('errorCount').textContent = stats?.total_errors || 0;
+            
+            // Token 统计
+            document.getElementById('todayTokens').textContent = formatTokens(stats?.today_tokens || 0);
+            document.getElementById('totalTokens').textContent = formatTokens(stats?.total_tokens || 0);
+            document.getElementById('todayCost').textContent = formatCost(stats?.today_tokens || 0);
+            document.getElementById('totalCost').textContent = formatCost(stats?.total_tokens || 0);
+        }
+        
+        function renderDeviceList() {
+            const tbody = document.getElementById('deviceList');
+            tbody.innerHTML = devices.map(d => `
+                <tr>
+                    <td>${d.name}</td>
+                    <td>${d.device_type}</td>
+                    <td>${d.public_ip || '-'}</td>
+                    <td>-</td>
+                    <td><span class="status-badge ${d.is_online ? 'status-online' : 'status-offline'}">${d.is_online ? '在线' : '离线'}</span></td>
+                    <td>${d.last_seen ? new Date(d.last_seen).toLocaleString('zh-CN') : '-'}</td>
+                    <td>
+                        <button class="btn btn-danger" onclick="deleteDevice(${d.id})">删除</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        function renderErrorList(errors) {
+            const tbody = document.getElementById('errorList');
+            if (!errors || errors.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#909399;">暂无错误日志</td></tr>';
+                document.getElementById('errorCount').textContent = '0';
+                return;
+            }
+            
+            document.getElementById('errorCount').textContent = errors.length;
+            
+            tbody.innerHTML = errors.map(e => `
+                <tr>
+                    <td>${new Date(e.timestamp).toLocaleString('zh-CN')}</td>
+                    <td>${devices.find(d => d.id === e.device_id)?.name || '未知'}</td>
+                    <td><span class="status-badge status-offline">${e.level}</span></td>
+                    <td>${e.message || '-'}</td>
+                    <td>${e.source || '-'}</td>
+                </tr>
+            `).join('');
+        }
+        
+        function showAddModal() {
+            document.getElementById('addModal').classList.add('show');
+        }
+        
+        function hideAddModal() {
+            document.getElementById('addModal').classList.remove('show');
+        }
+        
+        async function addDevice() {
+            const data = {
+                name: document.getElementById('deviceName').value,
+                device_type: document.getElementById('deviceType').value,
+                public_ip: document.getElementById('deviceIp').value || null,
+                notes: document.getElementById('deviceNotes').value || null
+            };
+            
+            if (!data.name) {
+                alert('请输入设备名称');
+                return;
+            }
+            
+            const result = await apiCall('/api/devices', {
+                method: 'POST',
+                body: JSON.stringify(data)
+            });
+            
+            hideAddModal();
+            loadData();
+            
+            if (result.api_key) {
+                alert('设备添加成功！API Key: ' + result.api_key + ' 请妥善保存');
+            }
+        }
+        
+        async function deleteDevice(id) {
+            if (!confirm('确定要删除这个设备吗？')) return;
+            
+            await apiCall('/api/devices/' + id, { method: 'DELETE' });
+            loadData();
+        }
+        
+        function refreshData() {
+            loadData();
+        }
+        
+        function updateTime() {
+            document.getElementById('currentTime').textContent = new Date().toLocaleString('zh-CN');
+        }
+        
+        updateTime();
+        setInterval(updateTime, 1000);
+        loadData();
+        setInterval(loadData, 30000);
+    </script>
+</body>
+</html>
+    """
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=SERVER_PORT)

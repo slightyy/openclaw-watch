@@ -1,0 +1,324 @@
+2026-02-18 02:13:02,653 - INFO - OpenClaw Watch Agent 启动
+2026-02-18 02:13:02,653 - INFO - NAS URL: http://111.229.46.94:39000
+2026-02-18 02:13:02,653 - INFO - 上报间隔: 30秒
+2026-02-18 02:13:08,152 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=39000): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f21a83e2750>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 02:13:08,152 - INFO - 状态上报: CPU=0.5%, Memory=31.8%
+2026-02-18 03:14:12,447 - INFO - OpenClaw Watch Agent 启动
+2026-02-18 03:14:12,447 - INFO - NAS URL: http://111.229.46.94:38888
+2026-02-18 03:14:12,447 - INFO - 上报间隔: 30秒
+2026-02-18 03:14:18,498 - INFO - 状态上报: CPU=1.5%, Memory=31.5%
+2026-02-18 03:14:54,185 - INFO - 状态上报: CPU=2.5%, Memory=33.6%
+2026-02-18 03:15:29,615 - INFO - 状态上报: CPU=0.5%, Memory=32.1%
+2026-02-18 03:16:05,088 - INFO - 状态上报: CPU=0.5%, Memory=32.7%
+2026-02-18 03:16:40,397 - INFO - 状态上报: CPU=0.0%, Memory=31.6%
+2026-02-18 03:17:15,692 - INFO - 状态上报: CPU=2.0%, Memory=33.5%
+2026-02-18 03:17:51,194 - INFO - 状态上报: CPU=0.5%, Memory=32.3%
+2026-02-18 03:18:26,539 - INFO - 状态上报: CPU=2.0%, Memory=34.4%
+2026-02-18 03:19:01,894 - INFO - 状态上报: CPU=1.5%, Memory=33.2%
+2026-02-18 03:19:37,212 - INFO - 状态上报: CPU=1.0%, Memory=34.0%
+2026-02-18 03:20:12,621 - INFO - 状态上报: CPU=25.6%, Memory=34.4%
+2026-02-18 03:20:47,824 - INFO - 状态上报: CPU=0.5%, Memory=31.9%
+2026-02-18 03:21:22,923 - INFO - 状态上报: CPU=0.5%, Memory=33.8%
+2026-02-18 03:21:58,187 - INFO - 状态上报: CPU=0.5%, Memory=30.8%
+2026-02-18 03:22:33,846 - INFO - 状态上报: CPU=0.5%, Memory=32.6%
+2026-02-18 03:23:09,050 - INFO - 状态上报: CPU=0.0%, Memory=33.1%
+2026-02-18 03:23:44,177 - INFO - 状态上报: CPU=0.0%, Memory=32.8%
+2026-02-18 03:24:19,429 - INFO - 状态上报: CPU=1.0%, Memory=31.0%
+2026-02-18 03:24:54,893 - INFO - 状态上报: CPU=0.0%, Memory=34.1%
+2026-02-18 03:25:30,044 - WARNING - 状态上报失败: 401
+2026-02-18 03:25:30,044 - INFO - 状态上报: CPU=0.5%, Memory=34.1%
+2026-02-18 03:26:05,309 - WARNING - 状态上报失败: 401
+2026-02-18 03:26:05,310 - INFO - 状态上报: CPU=0.5%, Memory=33.5%
+2026-02-18 03:26:40,821 - WARNING - 状态上报失败: 401
+2026-02-18 03:26:40,822 - INFO - 状态上报: CPU=1.0%, Memory=34.2%
+2026-02-18 03:26:41,504 - INFO - OpenClaw Watch Agent 启动
+2026-02-18 03:26:41,504 - INFO - NAS URL: http://111.229.46.94:38888
+2026-02-18 03:26:41,504 - INFO - 上报间隔: 30秒
+2026-02-18 03:26:46,685 - INFO - 状态上报: CPU=1.0%, Memory=35.3%
+2026-02-18 03:27:15,730 - WARNING - 状态上报失败: 401
+2026-02-18 03:27:15,730 - INFO - 状态上报: CPU=0.0%, Memory=35.5%
+2026-02-18 03:27:21,757 - INFO - 状态上报: CPU=0.5%, Memory=31.9%
+2026-02-18 03:27:51,040 - WARNING - 状态上报失败: 401
+2026-02-18 03:27:51,041 - INFO - 状态上报: CPU=0.0%, Memory=31.9%
+2026-02-18 03:27:56,940 - INFO - 状态上报: CPU=0.5%, Memory=31.9%
+2026-02-18 03:28:26,309 - WARNING - 状态上报失败: 401
+2026-02-18 03:28:26,310 - INFO - 状态上报: CPU=11.6%, Memory=33.7%
+2026-02-18 03:28:32,278 - INFO - 状态上报: CPU=0.5%, Memory=34.1%
+2026-02-18 03:29:01,734 - WARNING - 状态上报失败: 401
+2026-02-18 03:29:01,735 - INFO - 状态上报: CPU=0.0%, Memory=34.4%
+2026-02-18 03:29:07,275 - INFO - 状态上报: CPU=0.5%, Memory=35.1%
+2026-02-18 03:30:27,558 - INFO - OpenClaw Watch Agent 启动
+2026-02-18 03:30:27,558 - INFO - NAS URL: http://111.229.46.94:38888
+2026-02-18 03:30:27,558 - INFO - 上报间隔: 30秒
+2026-02-18 03:30:33,068 - INFO - 状态上报: CPU=0.5%, Memory=31.2%, Tokens=0
+2026-02-18 03:31:08,472 - INFO - 状态上报: CPU=1.0%, Memory=30.0%, Tokens=0
+2026-02-18 03:31:43,699 - INFO - 状态上报: CPU=41.4%, Memory=33.8%, Tokens=0
+2026-02-18 03:32:19,073 - INFO - 状态上报: CPU=0.0%, Memory=29.5%, Tokens=0
+2026-02-18 03:32:28,333 - INFO - OpenClaw Watch Agent 启动
+2026-02-18 03:32:28,333 - INFO - NAS URL: http://111.229.46.94:38888
+2026-02-18 03:32:28,333 - INFO - 上报间隔: 30秒
+2026-02-18 03:32:33,498 - INFO - 状态上报: CPU=0.0%, Memory=31.2%, Tokens=100223
+2026-02-18 03:33:08,992 - INFO - 状态上报: CPU=0.5%, Memory=30.4%, Tokens=109582
+2026-02-18 03:33:44,413 - INFO - 状态上报: CPU=0.5%, Memory=34.6%, Tokens=109582
+2026-02-18 03:34:19,633 - INFO - 状态上报: CPU=0.5%, Memory=32.2%, Tokens=109582
+2026-02-18 03:34:54,962 - INFO - 状态上报: CPU=24.5%, Memory=34.2%, Tokens=111796
+2026-02-18 03:35:30,262 - INFO - 状态上报: CPU=0.5%, Memory=34.7%, Tokens=111796
+2026-02-18 03:36:05,470 - INFO - 状态上报: CPU=1.5%, Memory=31.5%, Tokens=111796
+2026-02-18 03:36:11,941 - INFO - OpenClaw Watch Agent 启动
+2026-02-18 03:36:11,941 - INFO - NAS URL: http://111.229.46.94:38888
+2026-02-18 03:36:11,942 - INFO - 上报间隔: 30秒
+2026-02-18 03:36:16,782 - ERROR - 获取系统资源失败: name 'get_public_ip' is not defined
+2026-02-18 03:36:17,229 - INFO - 状态上报: CPU=0.0%, Memory=0.0%, Tokens=111796
+2026-02-18 03:36:52,481 - ERROR - 获取系统资源失败: name 'get_public_ip' is not defined
+2026-02-18 03:36:52,905 - INFO - 状态上报: CPU=0.0%, Memory=0.0%, Tokens=111796
+2026-02-18 03:37:27,837 - ERROR - 获取系统资源失败: name 'get_public_ip' is not defined
+2026-02-18 03:37:28,263 - INFO - 状态上报: CPU=0.0%, Memory=0.0%, Tokens=111796
+2026-02-18 03:38:25,147 - INFO - OpenClaw Watch Agent 启动
+2026-02-18 03:38:25,147 - INFO - NAS URL: http://111.229.46.94:38888
+2026-02-18 03:38:25,148 - INFO - 上报间隔: 30秒
+2026-02-18 03:38:30,717 - INFO - 状态上报: CPU=0.0%, Memory=32.9%, Tokens=111796
+2026-02-18 03:39:06,139 - INFO - 状态上报: CPU=1.0%, Memory=32.9%, Tokens=111796
+2026-02-18 03:39:41,770 - INFO - 状态上报: CPU=6.5%, Memory=33.4%, Tokens=111796
+2026-02-18 03:40:17,047 - INFO - 状态上报: CPU=0.0%, Memory=30.3%, Tokens=115899
+2026-02-18 03:40:52,317 - INFO - 状态上报: CPU=0.5%, Memory=33.8%, Tokens=115899
+2026-02-18 03:41:27,892 - INFO - 状态上报: CPU=0.5%, Memory=33.3%, Tokens=115899
+2026-02-18 03:42:03,344 - INFO - 状态上报: CPU=0.0%, Memory=32.3%, Tokens=115899
+2026-02-18 03:42:38,723 - INFO - 状态上报: CPU=0.0%, Memory=32.9%, Tokens=115899
+2026-02-18 03:43:14,133 - INFO - 状态上报: CPU=0.0%, Memory=31.0%, Tokens=115899
+2026-02-18 03:43:49,625 - INFO - 状态上报: CPU=0.0%, Memory=33.5%, Tokens=115899
+2026-02-18 03:44:25,054 - INFO - 状态上报: CPU=1.0%, Memory=32.4%, Tokens=115896
+2026-02-18 03:45:00,528 - INFO - 状态上报: CPU=0.5%, Memory=33.7%, Tokens=115978
+2026-02-18 03:45:35,997 - INFO - 状态上报: CPU=2.0%, Memory=33.7%, Tokens=116093
+2026-02-18 03:46:11,437 - INFO - 状态上报: CPU=0.0%, Memory=32.1%, Tokens=116093
+2026-02-18 03:46:46,997 - INFO - 状态上报: CPU=0.0%, Memory=33.6%, Tokens=116093
+2026-02-18 03:47:22,331 - INFO - 状态上报: CPU=0.0%, Memory=34.2%, Tokens=116093
+2026-02-18 03:47:57,812 - INFO - 状态上报: CPU=1.0%, Memory=31.0%, Tokens=116093
+2026-02-18 03:48:33,455 - INFO - 状态上报: CPU=0.5%, Memory=32.6%, Tokens=116093
+2026-02-18 03:49:08,985 - INFO - 状态上报: CPU=1.0%, Memory=34.0%, Tokens=116093
+2026-02-18 03:49:44,447 - INFO - 状态上报: CPU=0.5%, Memory=32.9%, Tokens=116093
+2026-02-18 03:50:19,826 - INFO - 状态上报: CPU=2.0%, Memory=34.2%, Tokens=116093
+2026-02-18 03:50:55,370 - INFO - 状态上报: CPU=0.5%, Memory=31.3%, Tokens=118758
+2026-02-18 03:51:31,066 - INFO - 状态上报: CPU=0.0%, Memory=33.8%, Tokens=118758
+2026-02-18 03:52:06,796 - INFO - 状态上报: CPU=13.6%, Memory=34.8%, Tokens=118806
+2026-02-18 03:52:42,311 - INFO - 状态上报: CPU=1.0%, Memory=34.1%, Tokens=118806
+2026-02-18 03:53:17,733 - INFO - 状态上报: CPU=0.5%, Memory=34.1%, Tokens=118916
+2026-02-18 03:53:53,081 - INFO - 状态上报: CPU=0.5%, Memory=33.0%, Tokens=118942
+2026-02-18 03:54:28,604 - INFO - 状态上报: CPU=0.5%, Memory=34.2%, Tokens=118942
+2026-02-18 03:55:04,213 - INFO - 状态上报: CPU=0.5%, Memory=32.8%, Tokens=119057
+2026-02-18 03:55:39,753 - INFO - 状态上报: CPU=1.0%, Memory=30.8%, Tokens=119057
+2026-02-18 03:56:15,161 - INFO - 状态上报: CPU=0.0%, Memory=30.5%, Tokens=119057
+2026-02-18 03:56:50,431 - INFO - 状态上报: CPU=0.0%, Memory=34.2%, Tokens=119118
+2026-02-18 03:57:26,227 - INFO - 状态上报: CPU=0.0%, Memory=31.4%, Tokens=119118
+2026-02-18 03:58:01,522 - INFO - 状态上报: CPU=1.0%, Memory=30.4%, Tokens=119118
+2026-02-18 03:58:36,960 - INFO - 状态上报: CPU=1.0%, Memory=30.7%, Tokens=119118
+2026-02-18 03:59:12,566 - INFO - 状态上报: CPU=0.0%, Memory=34.3%, Tokens=119118
+2026-02-18 03:59:48,032 - INFO - 状态上报: CPU=0.5%, Memory=32.8%, Tokens=119118
+2026-02-18 04:00:23,665 - INFO - 状态上报: CPU=2.5%, Memory=30.1%, Tokens=119118
+2026-02-18 04:00:59,288 - INFO - 状态上报: CPU=1.5%, Memory=34.0%, Tokens=119118
+2026-02-18 04:01:34,791 - INFO - 状态上报: CPU=1.0%, Memory=32.1%, Tokens=119118
+2026-02-18 04:02:10,424 - INFO - 状态上报: CPU=0.5%, Memory=31.0%, Tokens=119118
+2026-02-18 04:02:45,559 - INFO - 状态上报: CPU=0.0%, Memory=33.7%, Tokens=119118
+2026-02-18 04:03:21,265 - INFO - 状态上报: CPU=0.5%, Memory=34.0%, Tokens=119118
+2026-02-18 04:03:56,760 - INFO - 状态上报: CPU=0.5%, Memory=34.9%, Tokens=119118
+2026-02-18 04:04:32,054 - INFO - 状态上报: CPU=0.5%, Memory=31.9%, Tokens=119118
+2026-02-18 04:05:08,036 - INFO - 状态上报: CPU=0.0%, Memory=30.4%, Tokens=119118
+2026-02-18 04:05:43,710 - INFO - 状态上报: CPU=1.0%, Memory=32.6%, Tokens=119118
+2026-02-18 04:06:19,460 - INFO - 状态上报: CPU=0.5%, Memory=31.2%, Tokens=119118
+2026-02-18 04:06:54,588 - INFO - 状态上报: CPU=0.5%, Memory=35.0%, Tokens=119118
+2026-02-18 04:07:30,126 - INFO - 状态上报: CPU=1.0%, Memory=32.4%, Tokens=119118
+2026-02-18 04:08:05,956 - INFO - 状态上报: CPU=0.5%, Memory=34.0%, Tokens=119118
+2026-02-18 04:29:06,574 - INFO - OpenClaw Watch Agent 启动
+2026-02-18 04:29:06,574 - INFO - NAS URL: http://111.229.46.94:38889
+2026-02-18 04:29:06,574 - INFO - 上报间隔: 30秒
+2026-02-18 04:29:12,282 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x725a0eb66b70>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:29:12,282 - INFO - 状态上报: CPU=0.5%, Memory=31.7%, Net↑0.0KB/s ↓0.0KB/s, Tokens=138059
+2026-02-18 04:29:47,604 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x725a0eb672c0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:29:47,604 - INFO - 状态上报: CPU=0.0%, Memory=35.1%, Net↑20.1KB/s ↓3.5KB/s, Tokens=138059
+2026-02-18 04:30:22,836 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x725a0eb2eed0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:30:22,836 - INFO - 状态上报: CPU=0.5%, Memory=34.3%, Net↑39.3KB/s ↓3.8KB/s, Tokens=138059
+2026-02-18 04:30:58,903 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x725a0eb66bd0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:30:58,904 - INFO - 状态上报: CPU=0.0%, Memory=31.8%, Net↑19.6KB/s ↓2.1KB/s, Tokens=139116
+2026-02-18 04:31:33,951 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x725a0eb66720>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:31:33,952 - INFO - 状态上报: CPU=1.0%, Memory=32.0%, Net↑20.1KB/s ↓2.8KB/s, Tokens=139116
+2026-02-18 04:32:09,248 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x725a0eb679e0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:32:09,248 - INFO - 状态上报: CPU=1.0%, Memory=32.8%, Net↑0.5KB/s ↓1.1KB/s, Tokens=139370
+2026-02-18 04:32:44,490 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x725a0e12c050>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:32:44,491 - INFO - 状态上报: CPU=0.5%, Memory=32.7%, Net↑20.0KB/s ↓2.6KB/s, Tokens=139370
+2026-02-18 04:33:19,703 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x725a0eb67fb0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:33:19,703 - INFO - 状态上报: CPU=1.5%, Memory=31.5%, Net↑20.2KB/s ↓3.0KB/s, Tokens=139370
+2026-02-18 04:33:54,937 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x725a0eb670e0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:33:54,938 - INFO - 状态上报: CPU=0.0%, Memory=33.6%, Net↑39.7KB/s ↓2.4KB/s, Tokens=139370
+2026-02-18 04:34:30,317 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x725a0eb65ee0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:34:30,318 - INFO - 状态上报: CPU=1.0%, Memory=34.4%, Net↑12.3KB/s ↓4.8KB/s, Tokens=139648
+2026-02-18 04:35:05,539 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x725a0eb2fef0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:35:05,539 - INFO - 状态上报: CPU=0.0%, Memory=31.2%, Net↑30.6KB/s ↓2.4KB/s, Tokens=150235
+2026-02-18 04:35:40,873 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x725a0e12c590>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:35:40,874 - INFO - 状态上报: CPU=0.0%, Memory=32.0%, Net↑43.1KB/s ↓3.1KB/s, Tokens=151027
+2026-02-18 04:36:16,068 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x725a0eb13680>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:36:16,069 - INFO - 状态上报: CPU=14.6%, Memory=36.2%, Net↑22.1KB/s ↓2.1KB/s, Tokens=155259
+2026-02-18 04:37:08,891 - INFO - OpenClaw Watch Agent 启动
+2026-02-18 04:37:08,891 - INFO - NAS URL: http://111.229.46.94:38889
+2026-02-18 04:37:08,891 - INFO - 上报间隔: 30秒
+2026-02-18 04:37:13,869 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79bf89f62960>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:37:13,869 - INFO - 状态上报: CPU=1.0%, Memory=33.3%, Net↑0.0KB/s ↓0.0KB/s, Tokens=155290
+2026-02-18 04:37:48,954 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79bf89f63230>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:37:48,955 - INFO - 状态上报: CPU=0.5%, Memory=35.9%, Net↑22.3KB/s ↓3.3KB/s, Tokens=155290
+2026-02-18 04:38:24,243 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79bf89f2bf80>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:38:24,243 - INFO - 状态上报: CPU=1.5%, Memory=36.2%, Net↑43.6KB/s ↓3.9KB/s, Tokens=155290
+2026-02-18 04:38:59,318 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79bf89f62a80>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:38:59,319 - INFO - 状态上报: CPU=0.5%, Memory=36.4%, Net↑0.6KB/s ↓1.3KB/s, Tokens=156336
+2026-02-18 04:39:34,317 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79bf89f631a0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:39:34,317 - INFO - 状态上报: CPU=0.0%, Memory=35.6%, Net↑0.3KB/s ↓1.5KB/s, Tokens=156336
+2026-02-18 04:40:09,811 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79bf89f63950>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:40:09,811 - INFO - 状态上报: CPU=1.0%, Memory=34.0%, Net↑0.3KB/s ↓0.6KB/s, Tokens=156336
+2026-02-18 04:40:44,868 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79bf89528050>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:40:44,869 - INFO - 状态上报: CPU=1.0%, Memory=33.6%, Net↑22.5KB/s ↓3.5KB/s, Tokens=156336
+2026-02-18 04:41:19,910 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79bf89f63fb0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:41:19,910 - INFO - 状态上报: CPU=0.5%, Memory=33.1%, Net↑0.7KB/s ↓2.0KB/s, Tokens=156436
+2026-02-18 04:41:55,286 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79bf89f62ea0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:41:55,287 - INFO - 状态上报: CPU=0.0%, Memory=35.0%, Net↑22.0KB/s ↓2.0KB/s, Tokens=156436
+2026-02-18 04:42:24,725 - INFO - OpenClaw Watch Agent 启动
+2026-02-18 04:42:24,725 - INFO - NAS URL: http://111.229.46.94:38889
+2026-02-18 04:42:24,725 - INFO - 上报间隔: 30秒
+2026-02-18 04:42:29,802 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd786960>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:42:29,802 - INFO - 状态上报: CPU=1.0%, Memory=33.8%, Net↑0.0KB/s ↓0.0KB/s, Tokens=156436
+2026-02-18 04:43:04,962 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd787260>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:43:04,962 - INFO - 状态上报: CPU=2.5%, Memory=35.0%, Net↑44.1KB/s ↓3.7KB/s, Tokens=156436
+2026-02-18 04:43:40,700 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd74fe90>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:43:40,700 - INFO - 状态上报: CPU=0.0%, Memory=35.9%, Net↑43.3KB/s ↓3.5KB/s, Tokens=157388
+2026-02-18 04:44:15,663 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd785f70>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:44:15,663 - INFO - 状态上报: CPU=0.5%, Memory=34.1%, Net↑44.4KB/s ↓2.6KB/s, Tokens=157388
+2026-02-18 04:44:50,698 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd786960>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:44:50,698 - INFO - 状态上报: CPU=0.5%, Memory=36.0%, Net↑0.6KB/s ↓2.0KB/s, Tokens=157812
+2026-02-18 04:45:25,842 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd7879e0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:45:25,842 - INFO - 状态上报: CPU=0.5%, Memory=36.2%, Net↑0.2KB/s ↓1.2KB/s, Tokens=157812
+2026-02-18 04:46:01,105 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfcd2c260>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:46:01,106 - INFO - 状态上报: CPU=0.5%, Memory=36.1%, Net↑0.5KB/s ↓1.0KB/s, Tokens=157812
+2026-02-18 04:46:36,270 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd786c90>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:46:36,271 - INFO - 状态上报: CPU=0.0%, Memory=36.7%, Net↑0.4KB/s ↓1.7KB/s, Tokens=157812
+2026-02-18 04:47:11,662 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd7870b0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:47:11,663 - INFO - 状态上报: CPU=0.5%, Memory=36.3%, Net↑0.4KB/s ↓0.7KB/s, Tokens=157812
+2026-02-18 04:47:46,943 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd7338f0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:47:46,943 - INFO - 状态上报: CPU=0.5%, Memory=36.2%, Net↑0.5KB/s ↓1.7KB/s, Tokens=157812
+2026-02-18 04:48:21,859 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd74ed50>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:48:21,859 - INFO - 状态上报: CPU=0.0%, Memory=36.0%, Net↑0.5KB/s ↓1.4KB/s, Tokens=157812
+2026-02-18 04:48:57,128 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfcd20980>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:48:57,128 - INFO - 状态上报: CPU=0.5%, Memory=33.6%, Net↑0.7KB/s ↓1.2KB/s, Tokens=157812
+2026-02-18 04:49:32,352 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfeb977d0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:49:32,353 - INFO - 状态上报: CPU=0.5%, Memory=35.7%, Net↑0.4KB/s ↓1.7KB/s, Tokens=157812
+2026-02-18 04:50:07,609 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd787f50>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:50:07,609 - INFO - 状态上报: CPU=27.6%, Memory=32.7%, Net↑0.4KB/s ↓0.8KB/s, Tokens=157812
+2026-02-18 04:50:42,830 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd785f10>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:50:42,831 - INFO - 状态上报: CPU=0.0%, Memory=34.2%, Net↑22.5KB/s ↓3.2KB/s, Tokens=158012
+2026-02-18 04:51:18,094 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd785d00>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:51:18,095 - INFO - 状态上报: CPU=0.5%, Memory=35.8%, Net↑0.2KB/s ↓1.2KB/s, Tokens=158012
+2026-02-18 04:51:53,068 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfcd203e0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:51:53,069 - INFO - 状态上报: CPU=0.5%, Memory=31.9%, Net↑22.5KB/s ↓2.3KB/s, Tokens=158107
+2026-02-18 04:52:28,008 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd7868a0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:52:28,008 - INFO - 状态上报: CPU=0.5%, Memory=36.3%, Net↑0.4KB/s ↓1.7KB/s, Tokens=158107
+2026-02-18 04:53:03,255 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd786990>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:53:03,255 - INFO - 状态上报: CPU=0.0%, Memory=35.7%, Net↑65.8KB/s ↓3.0KB/s, Tokens=158107
+2026-02-18 04:53:38,405 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd786750>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:53:38,406 - INFO - 状态上报: CPU=3.5%, Memory=36.2%, Net↑67.6KB/s ↓3.7KB/s, Tokens=158107
+2026-02-18 04:54:13,564 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd74ec60>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:54:13,564 - INFO - 状态上报: CPU=0.5%, Memory=33.7%, Net↑65.6KB/s ↓2.8KB/s, Tokens=158107
+2026-02-18 04:54:48,908 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfcd202c0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:54:48,909 - INFO - 状态上报: CPU=1.0%, Memory=35.9%, Net↑67.2KB/s ↓4.0KB/s, Tokens=158107
+2026-02-18 04:55:24,041 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd7337a0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:55:24,041 - INFO - 状态上报: CPU=0.0%, Memory=32.7%, Net↑0.4KB/s ↓1.4KB/s, Tokens=161172
+2026-02-18 04:55:59,247 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd787920>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:55:59,248 - INFO - 状态上报: CPU=0.0%, Memory=36.5%, Net↑0.7KB/s ↓1.2KB/s, Tokens=161172
+2026-02-18 04:56:34,372 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd787080>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:56:34,373 - INFO - 状态上报: CPU=0.5%, Memory=33.9%, Net↑0.5KB/s ↓1.7KB/s, Tokens=161172
+2026-02-18 04:57:09,632 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd787c20>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:57:09,632 - INFO - 状态上报: CPU=0.5%, Memory=36.0%, Net↑22.7KB/s ↓2.1KB/s, Tokens=161172
+2026-02-18 04:57:44,981 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfcd21160>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:57:44,981 - INFO - 状态上报: CPU=0.0%, Memory=35.7%, Net↑45.0KB/s ↓4.1KB/s, Tokens=161172
+2026-02-18 04:58:20,117 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd7878c0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:58:20,117 - INFO - 状态上报: CPU=0.0%, Memory=35.6%, Net↑45.6KB/s ↓3.3KB/s, Tokens=161172
+2026-02-18 04:58:55,119 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd786750>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:58:55,119 - INFO - 状态上报: CPU=1.5%, Memory=33.2%, Net↑45.9KB/s ↓2.7KB/s, Tokens=161172
+2026-02-18 04:59:30,377 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd786f00>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 04:59:30,377 - INFO - 状态上报: CPU=0.0%, Memory=35.9%, Net↑46.0KB/s ↓3.8KB/s, Tokens=163562
+2026-02-18 05:00:05,804 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfd74eb70>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 05:00:05,804 - INFO - 状态上报: CPU=0.5%, Memory=35.5%, Net↑0.3KB/s ↓0.5KB/s, Tokens=163562
+2026-02-18 05:00:40,914 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfcd20ef0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 05:00:40,915 - INFO - 状态上报: CPU=1.0%, Memory=36.3%, Net↑0.4KB/s ↓1.5KB/s, Tokens=163562
+2026-02-18 05:01:16,692 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7bfdfdfb5ee0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 05:01:16,693 - INFO - 状态上报: CPU=1.0%, Memory=33.4%, Net↑22.7KB/s ↓1.9KB/s, Tokens=163562
+2026-02-18 05:01:41,162 - INFO - OpenClaw Watch Agent 启动
+2026-02-18 05:01:41,163 - INFO - NAS URL: http://111.229.46.94:38889
+2026-02-18 05:01:41,163 - INFO - 上报间隔: 30秒
+2026-02-18 05:01:46,553 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7b9e64b8aab0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 05:01:46,553 - INFO - 状态上报: CPU=0.0%, Memory=33.3%, Net↑0.0KB/s ↓0.0KB/s, Tokens=163562
+2026-02-18 05:02:21,643 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7b9e64b8b080>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 05:02:21,643 - INFO - 状态上报: CPU=0.0%, Memory=35.9%, Net↑46.3KB/s ↓4.3KB/s, Tokens=163562
+2026-02-18 05:02:56,920 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7b9e64b53f50>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 05:02:56,921 - INFO - 状态上报: CPU=0.0%, Memory=32.9%, Net↑23.4KB/s ↓2.6KB/s, Tokens=164449
+2026-02-18 05:03:32,017 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7b9e64b8b440>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 05:03:32,018 - INFO - 状态上报: CPU=10.6%, Memory=34.4%, Net↑0.7KB/s ↓2.0KB/s, Tokens=164449
+2026-02-18 05:04:07,104 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7b9e64b8ab10>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 05:04:07,104 - INFO - 状态上报: CPU=0.0%, Memory=32.9%, Net↑23.2KB/s ↓1.8KB/s, Tokens=164646
+2026-02-18 05:04:42,266 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7b9e64b8b9b0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 05:04:42,267 - INFO - 状态上报: CPU=0.0%, Memory=35.9%, Net↑0.5KB/s ↓1.7KB/s, Tokens=164646
+2026-02-18 05:05:16,208 - INFO - OpenClaw Watch Agent 启动
+2026-02-18 05:05:16,208 - INFO - NAS URL: http://111.229.46.94:38889
+2026-02-18 05:05:16,208 - INFO - 上报间隔: 30秒
+2026-02-18 05:05:21,473 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77526afb9f70>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 05:05:21,473 - INFO - 状态上报: CPU=0.5%, Memory=35.9%, Net↑0.0KB/s ↓0.0KB/s, Tokens=164646
+2026-02-18 05:05:56,692 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77526afbb290>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 05:05:56,692 - INFO - 状态上报: CPU=0.5%, Memory=35.7%, Net↑49.1KB/s ↓3.7KB/s, Tokens=164646
+2026-02-18 05:06:31,777 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77526af98170>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 05:06:31,778 - INFO - 状态上报: CPU=0.0%, Memory=33.1%, Net↑21.0KB/s ↓2.9KB/s, Tokens=165570
+2026-02-18 05:07:06,997 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77526afbaff0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 05:07:06,998 - INFO - 状态上报: CPU=1.0%, Memory=36.1%, Net↑92.6KB/s ↓3.8KB/s, Tokens=165570
+2026-02-18 05:07:42,247 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77526afba9f0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 05:07:42,248 - INFO - 状态上报: CPU=0.5%, Memory=33.0%, Net↑0.8KB/s ↓2.5KB/s, Tokens=170096
+2026-02-18 05:08:17,432 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77526afbb860>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 05:08:17,433 - INFO - 状态上报: CPU=0.5%, Memory=36.2%, Net↑0.2KB/s ↓1.2KB/s, Tokens=170096
+2026-02-18 05:08:53,002 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77526ada4200>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 05:08:53,003 - INFO - 状态上报: CPU=0.5%, Memory=33.6%, Net↑47.3KB/s ↓3.5KB/s, Tokens=170096
+2026-02-18 05:09:28,678 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77526afbbec0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 05:09:28,678 - INFO - 状态上报: CPU=0.0%, Memory=36.3%, Net↑70.9KB/s ↓4.7KB/s, Tokens=172430
+2026-02-18 05:10:04,292 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77526afbb290>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 05:10:04,293 - INFO - 状态上报: CPU=0.5%, Memory=35.5%, Net↑0.5KB/s ↓1.1KB/s, Tokens=172124
+2026-02-18 05:10:39,444 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77526afbb350>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 05:10:39,444 - INFO - 状态上报: CPU=0.5%, Memory=35.4%, Net↑24.4KB/s ↓2.6KB/s, Tokens=172124
+2026-02-18 05:11:14,745 - ERROR - 状态上报异常: HTTPConnectionPool(host='111.229.46.94', port=38889): Max retries exceeded with url: /api/report/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77526af679b0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-02-18 05:11:14,745 - INFO - 状态上报: CPU=0.5%, Memory=32.6%, Net↑24.3KB/s ↓2.4KB/s, Tokens=172209
+2026-02-18 05:11:50,087 - WARNING - 状态上报失败: 401
+2026-02-18 05:11:50,087 - INFO - 状态上报: CPU=0.5%, Memory=34.0%, Net↑0.5KB/s ↓1.7KB/s, Tokens=172241
+2026-02-18 05:12:24,266 - INFO - OpenClaw Watch Agent 启动
+2026-02-18 05:12:24,266 - INFO - NAS URL: http://111.229.46.94:38889
+2026-02-18 05:12:24,266 - INFO - 上报间隔: 30秒
+2026-02-18 05:12:29,480 - INFO - 状态上报: CPU=1.0%, Memory=32.7%, Net↑0.0KB/s ↓0.0KB/s, Tokens=172241
+2026-02-18 05:13:05,173 - INFO - 状态上报: CPU=0.5%, Memory=36.0%, Net↑47.8KB/s ↓3.5KB/s, Tokens=172241
+2026-02-18 05:13:40,500 - INFO - 状态上报: CPU=0.5%, Memory=33.0%, Net↑24.6KB/s ↓3.5KB/s, Tokens=173134
+2026-02-18 05:14:15,822 - INFO - 状态上报: CPU=21.6%, Memory=33.3%, Net↑0.5KB/s ↓0.8KB/s, Tokens=173134
+2026-02-18 05:14:51,476 - INFO - 状态上报: CPU=0.5%, Memory=34.0%, Net↑47.8KB/s ↓4.0KB/s, Tokens=173134
+2026-02-18 05:15:26,780 - INFO - 状态上报: CPU=2.0%, Memory=34.5%, Net↑24.8KB/s ↓3.3KB/s, Tokens=175402
+2026-02-18 05:16:02,422 - INFO - 状态上报: CPU=1.0%, Memory=36.5%, Net↑0.4KB/s ↓0.8KB/s, Tokens=175402
+2026-02-18 05:16:37,616 - INFO - 状态上报: CPU=0.0%, Memory=36.1%, Net↑0.5KB/s ↓1.7KB/s, Tokens=175402
+2026-02-18 05:17:12,810 - INFO - 状态上报: CPU=0.5%, Memory=36.5%, Net↑0.3KB/s ↓0.6KB/s, Tokens=175402
+2026-02-18 05:17:48,163 - INFO - 状态上报: CPU=0.5%, Memory=34.6%, Net↑0.7KB/s ↓2.0KB/s, Tokens=175402
+2026-02-18 05:18:23,575 - INFO - 状态上报: CPU=1.0%, Memory=36.6%, Net↑1.1KB/s ↓2.0KB/s, Tokens=175402
+2026-02-18 05:18:58,803 - INFO - 状态上报: CPU=0.0%, Memory=33.9%, Net↑0.5KB/s ↓1.1KB/s, Tokens=175402
+2026-02-18 05:19:34,312 - INFO - 状态上报: CPU=1.0%, Memory=35.4%, Net↑0.5KB/s ↓1.7KB/s, Tokens=175402
+2026-02-18 05:20:09,692 - INFO - 状态上报: CPU=1.0%, Memory=35.2%, Net↑0.3KB/s ↓0.6KB/s, Tokens=175402
+2026-02-18 05:20:45,013 - INFO - 状态上报: CPU=1.0%, Memory=35.6%, Net↑0.5KB/s ↓1.7KB/s, Tokens=175402
+2026-02-18 05:21:20,545 - INFO - 状态上报: CPU=0.0%, Memory=35.6%, Net↑0.5KB/s ↓1.5KB/s, Tokens=175402
+2026-02-18 05:21:56,071 - INFO - 状态上报: CPU=1.0%, Memory=35.2%, Net↑48.6KB/s ↓3.7KB/s, Tokens=175402
+2026-02-18 05:22:31,483 - INFO - 状态上报: CPU=1.0%, Memory=33.6%, Net↑24.6KB/s ↓2.8KB/s, Tokens=175548
+2026-02-18 05:23:06,941 - INFO - 状态上报: CPU=0.5%, Memory=36.1%, Net↑48.7KB/s ↓4.4KB/s, Tokens=175548
+2026-02-18 05:23:42,320 - INFO - 状态上报: CPU=0.5%, Memory=33.5%, Net↑97.3KB/s ↓4.7KB/s, Tokens=175548
+2026-02-18 05:24:17,532 - INFO - 状态上报: CPU=0.5%, Memory=32.5%, Net↑74.1KB/s ↓8.1KB/s, Tokens=175548
+2026-02-18 05:24:53,275 - INFO - 状态上报: CPU=1.5%, Memory=36.1%, Net↑73.4KB/s ↓5.3KB/s, Tokens=175548
+2026-02-18 05:25:28,625 - INFO - 状态上报: CPU=0.5%, Memory=35.7%, Net↑99.3KB/s ↓5.1KB/s, Tokens=175548
+2026-02-18 05:26:04,078 - INFO - 状态上报: CPU=0.5%, Memory=32.0%, Net↑51.2KB/s ↓4.1KB/s, Tokens=175548
+2026-02-18 05:26:39,568 - INFO - 状态上报: CPU=0.0%, Memory=34.9%, Net↑19.2KB/s ↓3.1KB/s, Tokens=175548
+2026-02-18 05:27:15,350 - INFO - 状态上报: CPU=0.5%, Memory=36.7%, Net↑0.5KB/s ↓0.9KB/s, Tokens=182104
+2026-02-18 05:27:50,693 - INFO - 状态上报: CPU=0.0%, Memory=33.7%, Net↑19.9KB/s ↓3.0KB/s, Tokens=182104
+2026-02-18 05:28:26,149 - INFO - 状态上报: CPU=0.0%, Memory=36.2%, Net↑15.7KB/s ↓3.7KB/s, Tokens=182104
+2026-02-18 05:29:01,609 - INFO - 状态上报: CPU=0.0%, Memory=35.6%, Net↑29.2KB/s ↓4.2KB/s, Tokens=182104
+2026-02-18 05:29:37,208 - INFO - 状态上报: CPU=3.0%, Memory=34.8%, Net↑17.0KB/s ↓4.2KB/s, Tokens=182104
+2026-02-18 05:30:12,732 - INFO - 状态上报: CPU=0.5%, Memory=36.4%, Net↑35.1KB/s ↓4.4KB/s, Tokens=182104
