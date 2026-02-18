@@ -69,7 +69,7 @@ systemctl start docker
 systemctl enable docker
 
 # 克隆项目
-git clone https://github.com/slightyy/openclaw-watch.git
+git clone https://gitee.com/slightyy/openclaw-watch.git
 cd openclaw-watch
 
 # 启动服务
@@ -89,7 +89,7 @@ docker-compose up -d --build
 
 ```bash
 # 下载 Agent
-git clone https://github.com/slightyy/openclaw-watch.git
+git clone https://gitee.com/slightyy/openclaw-watch.git
 cd openclaw-watch/agent
 
 # 编辑配置
