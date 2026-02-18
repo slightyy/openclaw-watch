@@ -370,26 +370,40 @@ async def get_stats(db: AsyncSession = Depends(get_db)):
     )
     today_status = list(today_result.scalars().all())
     
+    # 昨日最后一条记录（用于计算今日增量）
+    yesterday = today - timedelta(days=1)
+    yesterday_result = await db.execute(
+        select(DeviceStatus).where(DeviceStatus.timestamp >= yesterday).where(DeviceStatus.timestamp < today).order_by(DeviceStatus.timestamp.desc())
+    )
+    yesterday_status = list(yesterday_result.scalars().all())
+    yesterday_last_tokens = yesterday_status[0].total_tokens if yesterday_status else 0
+    
+    # 今日 Token
     today_tokens = 0
     if len(today_status) >= 2:
         first_tokens = today_status[0].total_tokens or 0
         last_tokens = today_status[-1].total_tokens or 0
         today_tokens = max(0, last_tokens - first_tokens)
     elif len(today_status) == 1:
-        today_tokens = today_status[0].total_tokens or 0
+        # 只有1条记录时，计算与昨日最后一条的差值
+        today_tokens = max(0, (today_status[0].total_tokens or 0) - yesterday_last_tokens)
     
     # 昨日 Token
-    yesterday = today - timedelta(days=1)
-    yesterday_result = await db.execute(
-        select(DeviceStatus).where(DeviceStatus.timestamp >= yesterday).where(DeviceStatus.timestamp < today).order_by(DeviceStatus.timestamp.asc())
+    yesterday_start = yesterday - timedelta(days=1)
+    day_before_result = await db.execute(
+        select(DeviceStatus).where(DeviceStatus.timestamp < yesterday).order_by(DeviceStatus.timestamp.desc())
     )
-    yesterday_status = list(yesterday_result.scalars().all())
+    day_before_status = list(day_before_result.scalars().all())
+    day_before_last_tokens = day_before_status[0].total_tokens if day_before_status else 0
     
     yesterday_tokens = 0
     if len(yesterday_status) >= 2:
         first_tokens = yesterday_status[0].total_tokens or 0
         last_tokens = yesterday_status[-1].total_tokens or 0
         yesterday_tokens = max(0, last_tokens - first_tokens)
+    elif len(yesterday_status) == 1:
+        # 只有1条记录时，计算与前日最后一条的差值
+        yesterday_tokens = max(0, (yesterday_status[0].total_tokens or 0) - day_before_last_tokens)
     
     # 错误数量
     errors_result = await db.execute(select(ErrorLog))
